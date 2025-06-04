@@ -64,6 +64,10 @@ Gerar a key do projeto Laravel
 php artisan key:generate
 ```
 
+Os testes foram feitos usando PEST
+```sh
+docker-compose exec app ./vendor/bin/pest --parallel
+```
 
 Acessar o projeto
 [http://localhost:8000](http://localhost:8989)
