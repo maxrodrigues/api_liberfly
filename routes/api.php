@@ -10,3 +10,6 @@ Route::get('/user', function (Request $request) {
 
 Route::get('users-list', \App\Http\Controllers\UsersListController::class)->name('users-list');
 Route::post('add-user', \App\Http\Controllers\AddUserController::class)->name('add-user');
+
+Route::get('user/{user}', \App\Http\Controllers\ListUserController::class)->name('get-user');
+
