@@ -25,11 +25,14 @@ class AddUserController extends Controller
     {
         try {
             $data = $request->validated();
-            User::create($data);
+            $user = User::create($data);
 
             return new JsonResponse([
                 'status' => 'success',
-                'data' => [],
+                'data' => [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ],
             ], Response::HTTP_CREATED);
         }
         catch (\Exception $e) {
