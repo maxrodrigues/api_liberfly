@@ -16,6 +16,22 @@ it('should be return error when email field is empty', function () {
         ]);
 });
 
+it('should be return error when password field is empty', function () {
+    $res = $this->post(route('login'), [
+        'email' => "test@test.com",
+        'password' => '',
+    ])
+        ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_UNPROCESSABLE_ENTITY)
+        ->assertJson([
+            'status' => 'error',
+            'data' => [
+                'password' => [
+                    "The password field is required.",
+                ]
+            ]
+        ]);
+});
+
 it('login user', function () {
     $user = userData();
     $factoryUser = \App\Models\User::factory()->create($user);
