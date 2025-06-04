@@ -6,16 +6,49 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/add-user": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Add a new user",
+                "operationId": "02f1d92f09f9ca7ab3acb0abff4b0ef8",
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
         "/api/users-list": {
             "get": {
+                "tags": [
+                    "users"
+                ],
                 "description": "Get a list of all users",
                 "operationId": "bbdf83fc998d16a93baf78467121c809",
                 "responses": {
                     "200": {
                         "description": "success"
+                    },
+                    "400": {
+                        "description": "Bad request"
                     }
                 }
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "user",
+            "description": "user"
+        },
+        {
+            "name": "users",
+            "description": "users"
+        }
+    ]
 }
