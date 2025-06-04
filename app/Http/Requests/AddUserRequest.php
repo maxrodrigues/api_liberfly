@@ -6,6 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\Rules\Password;
 use Symfony\Component\HttpFoundation\Response;
 
 class AddUserRequest extends FormRequest
@@ -28,7 +29,14 @@ class AddUserRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users,email',
-            'password' => 'required|string',
+            'password' => ['required', 'string', Password::min(6)
+                ->max(255)
+                ->letters()
+                ->numbers()
+                ->symbols()
+                ->mixedCase()
+                ->uncompromised()
+            ],
         ];
     }
 

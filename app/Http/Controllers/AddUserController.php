@@ -18,7 +18,8 @@ class AddUserController extends Controller
         tags: ["user"],
         responses: [
             new OA\Response(response: 201, description: "OK",),
-            new OA\Response(response: 400, description: "Bad request",)
+            new OA\Response(response: 400, description: "Bad request",),
+            new OA\Response(response: 422, description: "Validation failed",)
         ],
     )]
     public function __invoke(AddUserRequest $request)
