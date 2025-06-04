@@ -45,4 +45,18 @@ it('return error when field email is missing', function () {
             ]
         ]);
 });
-todo('user email should be unique');
+
+it('user email should be unique', function () {
+    $userFactory = \App\Models\User::factory()->create();
+    $user = userData();
+    $user['email'] = $userFactory->email;
+
+    $response = $this->post(route('add-user'), $user)
+        ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_UNPROCESSABLE_ENTITY)
+        ->assertExactJson([
+            'status' => 'error',
+            'data' => [
+                'email' => ['The email has already been taken.'],
+            ]
+        ]);
+});
