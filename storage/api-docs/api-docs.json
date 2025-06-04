@@ -1,0 +1,21 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Liberfly API",
+        "description": "Liberfly API test",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/users-list": {
+            "get": {
+                "description": "Get a list of all users",
+                "operationId": "bbdf83fc998d16a93baf78467121c809",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}
