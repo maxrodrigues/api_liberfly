@@ -66,6 +66,4 @@ php artisan key:generate
 
 
 Acessar o projeto
-[http://localhost:8989](http://localhost:8989)
-
-<sub>Inspirado no repositório [setup-docker-laravel](https://github.com/especializati/setup-docker-laravel)</sub>
+[http://localhost:8000](http://localhost:8989)
