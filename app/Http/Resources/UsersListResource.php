@@ -16,8 +16,8 @@ class UsersListResource extends ResourceCollection
     {
         return $this->collection->transform(function ($item) {
             return [
-                'name' => $item['name'],
                 'email' => $item['email'],
+                'name' => $item['name'],
             ];
         })->toArray();
     }
