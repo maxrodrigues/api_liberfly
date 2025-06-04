@@ -31,5 +31,18 @@ it ('return error when field name is missing', function () {
             ]
         ]);
 });
-todo('return error when field email is missing');
+
+it('return error when field email is missing', function () {
+    $user = userData();
+    \Illuminate\Support\Arr::forget($user, ['email']);
+
+    $response = $this->post(route('add-user'), $user)
+        ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_UNPROCESSABLE_ENTITY)
+        ->assertExactJson([
+            'status' => 'error',
+            'data' => [
+                'email' => ['The email field is required.'],
+            ]
+        ]);
+});
 todo('user email should be unique');
