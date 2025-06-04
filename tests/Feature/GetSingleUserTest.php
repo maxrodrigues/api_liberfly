@@ -2,7 +2,7 @@
 
 it('get user', function () {
     $user = \App\Models\User::factory()->create();
-    $res = $this->get(route('get-user', ['user' => 1]))
+    $this->get(route('get-user', ['user' => 1]))
         ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_OK)
         ->assertJson([
             'status' => 'success',

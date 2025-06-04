@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserListResource;
 use App\Http\Resources\UsersListResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -27,7 +28,7 @@ class ListUserController extends Controller
 
             return new JsonResponse([
                 'status' => 'success',
-                'data' => new UsersListResource($user),
+                'data' => new UserListResource($user),
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return new JsonResponse([

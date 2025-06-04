@@ -4,10 +4,9 @@ use App\Models\User;
 
 it ('list all users', function () {
     $users = User::factory()->count(50)->create();
-
-    $response = $this->get(route('users-list'));
-    $response->assertStatus(200);
-    $response->assertExactJson([
+    $this->get(route('users-list'))
+        ->assertStatus(\Symfony\Component\HttpFoundation\Response::HTTP_OK)
+        ->assertExactJson([
         'status' => 'success',
         'data' => $users->toArray(),
     ]);

@@ -27,7 +27,7 @@ class UsersListController extends Controller
 
             return new JsonResponse([
                 'status' => 'success',
-                'data' => $users,
+                'data' => new UsersListResource($users),
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return new JsonResponse([

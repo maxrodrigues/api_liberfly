@@ -3,20 +3,22 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class UsersListResource extends JsonResource
+class UsersListResource extends ResourceCollection
 {
     /**
-     * Transform the resource into an array.
+     * Transform the resource collection into an array.
      *
-     * @return array<string, mixed>
+     * @return array<int|string, mixed>
      */
     public function toArray(Request $request): array
     {
-        return [
-            'name' => $this->name,
-            'email' => $this->email,
-        ];
+        return $this->collection->transform(function ($item) {
+            return [
+                'name' => $item['name'],
+                'email' => $item['email'],
+            ];
+        })->toArray();
     }
 }
