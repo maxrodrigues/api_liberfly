@@ -16,12 +16,23 @@ class ListUserController extends Controller
     {
         try {
             $user = User::find($user);
+
+            if (!$user) {
+                return new JsonResponse([
+                    'status' => 'error',
+                    'message' => 'User not found',
+                ], Response::HTTP_NOT_FOUND);
+            }
+
             return new JsonResponse([
                 'status' => 'success',
                 'data' => $user,
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
-            return new JsonResponse([], Response::HTTP_BAD_REQUEST);
+            return new JsonResponse([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], Response::HTTP_BAD_REQUEST);
         }
     }
 }
