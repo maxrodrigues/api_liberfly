@@ -1,7 +1,7 @@
 <?php
 
 it('should be return error when email field is empty', function () {
-    $this->post(route('login'), [
+    $res = $this->post(route('login'), [
         'email' => "",
         'password' => '1*Kg=4J3p',
     ])
@@ -9,10 +9,12 @@ it('should be return error when email field is empty', function () {
         ->assertJson([
             'status' => 'error',
             'data' => [
-                'email' => []
+                'email' => [
+                    "The email field is required."
+                ]
             ]
         ]);
-})->skip();
+});
 
 it('login user', function () {
     $user = userData();

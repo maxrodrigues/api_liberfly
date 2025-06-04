@@ -38,6 +38,7 @@ class LoginController extends Controller
                 ]
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
+            dd($e->getMessage());
             return new JsonResponse([], Response::HTTP_BAD_REQUEST);
         }
     }
