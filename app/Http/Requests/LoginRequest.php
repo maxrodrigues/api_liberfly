@@ -26,7 +26,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
+            'email'    => 'required|email',
             'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()],
         ];
     }
@@ -36,7 +36,7 @@ class LoginRequest extends FormRequest
         throw new HttpResponseException(
             new \Illuminate\Http\JsonResponse([
                 'status' => 'error',
-                'data' => $validator->errors(),
+                'data'   => $validator->errors(),
             ], Response::HTTP_UNPROCESSABLE_ENTITY)
         );
     }

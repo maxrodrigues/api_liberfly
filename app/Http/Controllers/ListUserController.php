@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\UserListResource;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
 use OpenApi\Attributes as OA;
+use Illuminate\Http\{JsonResponse, Request};
 use Symfony\Component\HttpFoundation\Response;
 
 class ListUserController extends Controller
@@ -26,18 +26,18 @@ class ListUserController extends Controller
 
             if (! $user) {
                 return new JsonResponse([
-                    'status' => 'error',
+                    'status'  => 'error',
                     'message' => 'User not found',
                 ], Response::HTTP_NOT_FOUND);
             }
 
             return new JsonResponse([
                 'status' => 'success',
-                'data' => new UserListResource($user),
+                'data'   => new UserListResource($user),
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return new JsonResponse([
-                'status' => 'error',
+                'status'  => 'error',
                 'message' => $e->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
         }

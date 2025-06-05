@@ -41,10 +41,10 @@ class RegisterController extends Controller
 
             return new JsonResponse([
                 'status' => 'success',
-                'data' => [
-                    'user' => new UserListResource($user),
+                'data'   => [
+                    'user'       => new UserListResource($user),
                     'token_type' => 'Bearer',
-                    'token' => $token,
+                    'token'      => $token,
                     'expiration' => 525600,
                 ],
             ], Response::HTTP_CREATED);
@@ -55,7 +55,7 @@ class RegisterController extends Controller
             ]);
 
             return new JsonResponse([
-                'status' => 'error',
+                'status'  => 'error',
                 'message' => $e->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
         }

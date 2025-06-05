@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Illuminate\Http\{JsonResponse, Request};
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -26,11 +25,11 @@ class UsersListController extends Controller
 
             return new JsonResponse([
                 'status' => 'success',
-                'data' => $users,
+                'data'   => $users,
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return new JsonResponse([
-                'status' => 'error',
+                'status'  => 'error',
                 'message' => $e->getMessage(),
             ]);
         }

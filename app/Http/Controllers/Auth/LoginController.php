@@ -35,9 +35,9 @@ class LoginController extends Controller
             $data = $request->validated();
             $user = User::where('email', $data['email'])->first();
 
-            if (! $user || ! Hash::check($data['password'], $user->password)) {
+            if (!$user || !Hash::check($data['password'], $user->password)) {
                 return new JsonResponse([
-                    'status' => 'error',
+                    'status'  => 'error',
                     'message' => 'Invalid credentials',
                 ], Response::HTTP_UNAUTHORIZED);
             }
@@ -46,15 +46,15 @@ class LoginController extends Controller
 
             return new JsonResponse([
                 'status' => 'success',
-                'data' => [
+                'data'   => [
                     'token_type' => 'Bearer',
-                    'token' => $token,
+                    'token'      => $token,
                     'expiration' => 525600,
                 ],
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return new JsonResponse([
-                'status' => 'error',
+                'status'  => 'error',
                 'message' => $e->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
         }

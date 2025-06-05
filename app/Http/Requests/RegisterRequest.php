@@ -26,8 +26,8 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'email' => 'required|string|email|unique:users,email',
+            'name'     => 'required|string',
+            'email'    => 'required|string|email|unique:users,email',
             'password' => [
                 'required',
                 'confirmed',
@@ -42,7 +42,7 @@ class RegisterRequest extends FormRequest
         throw new HttpResponseException(
             new \Illuminate\Http\JsonResponse([
                 'status' => 'error',
-                'data' => $validator->errors(),
+                'data'   => $validator->errors(),
             ], Response::HTTP_UNPROCESSABLE_ENTITY)
         );
     }
