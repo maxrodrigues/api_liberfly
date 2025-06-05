@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserListResource;
-use App\Http\Resources\UsersListResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -19,7 +18,7 @@ class ListUserController extends Controller
         try {
             $user = User::find($user);
 
-            if (!$user) {
+            if (! $user) {
                 return new JsonResponse([
                     'status' => 'error',
                     'message' => 'User not found',
