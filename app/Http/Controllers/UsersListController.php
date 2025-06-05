@@ -14,7 +14,7 @@ class UsersListController extends Controller
     #[OA\Get (
         path: "/api/users-list",
         description: "Get a list of all users",
-        tags: ["users"],
+        tags: ["user"],
         responses: [
             new OA\Response(response: 200, description: "success"),
             new OA\Response(response: 400, description: "Bad request")
