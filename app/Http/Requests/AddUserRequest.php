@@ -35,7 +35,7 @@ class AddUserRequest extends FormRequest
                 ->numbers()
                 ->symbols()
                 ->mixedCase()
-                ->uncompromised()
+                ->uncompromised(),
             ],
         ];
     }

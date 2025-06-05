@@ -3,22 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserListResource;
-use App\Http\Resources\UsersListResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Attributes as OA;
+use Symfony\Component\HttpFoundation\Response;
 
 class ListUserController extends Controller
 {
-    #[OA\Get (
-        path: "/api/user/{user}",
-        description: "Get a list of all users",
-        tags: ["user"],
+    #[OA\Get(
+        path: '/api/user/{user}',
+        description: 'Get a list of all users',
+        tags: ['user'],
         responses: [
-            new OA\Response(response: 200, description: "success"),
-            new OA\Response(response: 400, description: "Bad request")
+            new OA\Response(response: 200, description: 'success'),
+            new OA\Response(response: 400, description: 'Bad request'),
         ]
     )]
     public function __invoke($user): JsonResponse
@@ -26,7 +24,7 @@ class ListUserController extends Controller
         try {
             $user = User::find($user);
 
-            if (!$user) {
+            if (! $user) {
                 return new JsonResponse([
                     'status' => 'error',
                     'message' => 'User not found',
