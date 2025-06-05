@@ -3,8 +3,17 @@
     "info": {
         "title": "Liberfly API",
         "description": "Liberfly API test",
+        "license": {
+            "name": "MIT"
+        },
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": "https://localhost/api",
+            "description": "API server"
+        }
+    ],
     "paths": {
         "/api/add-user": {
             "post": {
@@ -28,11 +37,27 @@
         },
         "api/auth/login": {
             "post": {
+                "tags": [
+                    "auth"
+                ],
                 "description": "User Login",
                 "operationId": "18027c6b05c566dd747efa20f51af21b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "example": "{\"email\":\"adrian.runolfsdottir51@yahoo.com\", \"password\":\"1*Kg=4J3p\"}"
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
-                        "description": "Successful login"
+                        "description": "Successful login",
+                        "content": {
+                            "application/json": {
+                                "example": "{\"status\": \"success\",\"data\": {\"token_type\": \"Bearer\",\"token\": \"3|mpZXpfKUgHDaIG4rx5brFj0Msh70Ri9fPvR3tOaed744e596\",\"expiration\": 525600}}"
+                            }
+                        }
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -45,8 +70,20 @@
         },
         "api/auth/register": {
             "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Register a new user",
                 "description": "Register a new user",
                 "operationId": "246d38bd6c501b12476de086ac23f7f9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "example": "{\"name\":\"Benny Keebler\",\"email\":\"adrian.runolfsdottir51@yahoo.com\", \"password\":\"1*Kg=4J3p\", \"password_confirmation\":\"1*Kg=4J3p\"}"
+                        }
+                    }
+                },
                 "responses": {
                     "201": {
                         "description": "Successful register user"
@@ -60,10 +97,27 @@
                 }
             }
         },
+        "/api/user/{user}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Get a list of all users",
+                "operationId": "d96f2de30fdc5a89dd372b76b0af926f",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
         "/api/users-list": {
             "get": {
                 "tags": [
-                    "users"
+                    "user"
                 ],
                 "description": "Get a list of all users",
                 "operationId": "bbdf83fc998d16a93baf78467121c809",
@@ -78,14 +132,28 @@
             }
         }
     },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Basic Auth",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
     "tags": [
         {
             "name": "user",
             "description": "user"
         },
         {
-            "name": "users",
-            "description": "users"
+            "name": "auth",
+            "description": "auth"
         }
     ]
 }

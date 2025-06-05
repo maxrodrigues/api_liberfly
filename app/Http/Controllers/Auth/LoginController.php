@@ -15,6 +15,14 @@ class LoginController extends Controller
     #[OA\Post(
         path: 'api/auth/login',
         description: 'User Login',
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\MediaType(
+                mediaType: 'application/json',
+                example: '{"email":"adrian.runolfsdottir51@yahoo.com", "password":"1*Kg=4J3p"}',
+            )
+        ),
+        tags: ['auth'],
         responses: [
             new OA\Response(response: 200, description: 'Successful login'),
             new OA\Response(response: 401, description: 'Unauthorized'),
@@ -34,7 +42,7 @@ class LoginController extends Controller
                 ], Response::HTTP_UNAUTHORIZED);
             }
 
-            $token = $user->createToken('liberfly-' . $user->id . '-token')->plainTextToken;
+            $token = $user->createToken('liberfly-'.$user->id.'-token')->plainTextToken;
 
             return new JsonResponse([
                 'status' => 'success',
