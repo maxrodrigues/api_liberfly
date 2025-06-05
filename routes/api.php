@@ -1,10 +1,7 @@
 <?php
 
-use App\Http\Controllers\AddUserController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\ListUserController;
-use App\Http\Controllers\UsersListController;
+use App\Http\Controllers\{AddUserController, ListUserController, UsersListController};
+use App\Http\Controllers\Auth\{LoginController, RegisterController};
 use Illuminate\Support\Facades\Route;
 
 Route::post('auth/login', LoginController::class)->name('login');

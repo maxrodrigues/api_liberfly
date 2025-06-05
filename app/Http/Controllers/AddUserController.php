@@ -28,15 +28,15 @@ class AddUserController extends Controller
 
             return new JsonResponse([
                 'status' => 'success',
-                'data' => [
-                    'name' => $user->name,
+                'data'   => [
+                    'name'  => $user->name,
                     'email' => $user->email,
                 ],
             ], Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return new JsonResponse([
                 'status' => 'error',
-                'data' => [],
+                'data'   => [],
             ], Response::HTTP_BAD_REQUEST);
         }
     }

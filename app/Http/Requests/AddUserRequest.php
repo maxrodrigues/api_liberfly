@@ -27,8 +27,8 @@ class AddUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'email' => 'required|string|email|unique:users,email',
+            'name'     => 'required|string',
+            'email'    => 'required|string|email|unique:users,email',
             'password' => ['required', 'string', Password::min(6)
                 ->max(255)
                 ->letters()
@@ -45,7 +45,7 @@ class AddUserRequest extends FormRequest
         throw new HttpResponseException(
             new JsonResponse([
                 'status' => 'error',
-                'data' => $validator->errors(),
+                'data'   => $validator->errors(),
             ], Response::HTTP_UNPROCESSABLE_ENTITY)
         );
     }
