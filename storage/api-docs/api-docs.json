@@ -43,6 +43,23 @@
                 }
             }
         },
+        "api/auth/register": {
+            "post": {
+                "description": "Register a new user",
+                "operationId": "246d38bd6c501b12476de086ac23f7f9",
+                "responses": {
+                    "201": {
+                        "description": "Successful register user"
+                    },
+                    "422": {
+                        "description": "Error when validating data"
+                    },
+                    "400": {
+                        "description": "Generic or unmapped error"
+                    }
+                }
+            }
+        },
         "/api/users-list": {
             "get": {
                 "tags": [
