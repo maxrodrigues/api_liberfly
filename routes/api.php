@@ -13,3 +13,5 @@ Route::post('add-user', \App\Http\Controllers\AddUserController::class)->name('a
 
 Route::get('user/{user}', \App\Http\Controllers\ListUserController::class)->name('get-user');
 
+
+Route::post('auth/login', \App\Http\Controllers\Auth\LoginController::class)->name('login');
