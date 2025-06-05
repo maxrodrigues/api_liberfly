@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rules\Password;
 use Symfony\Component\HttpFoundation\Response;
 
 class RegisterRequest extends FormRequest
@@ -27,7 +28,12 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users,email',
-            'password' => 'required|string|confirmed',
+            'password' => [
+                'required',
+                'confirmed',
+                'string',
+                Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()
+            ],
         ];
     }
 
