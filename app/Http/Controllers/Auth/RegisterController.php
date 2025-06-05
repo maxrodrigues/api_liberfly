@@ -17,8 +17,17 @@ class RegisterController extends Controller
     #[OA\Post(
         path: "api/auth/register",
         description: "Register a new user",
+        summary: "Register a new user",
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\MediaType(
+                mediaType: "application/json",
+                example: "{\"name\":\"Benny Keebler\",\"email\":\"adrian.runolfsdottir51@yahoo.com\", \"password\":\"1*Kg=4J3p\", \"password_confirmation\":\"1*Kg=4J3p\"}"
+            ),
+        ),
+        tags: ["auth"],
         responses: [
-            new OA\Response(response: 201, description: "Successful register user"),
+            new OA\Response(response: 201 ,description: "Successful register user"),
             new OA\Response(response: 422, description: "Error when validating data"),
             new OA\Response(response: 400, description: "Generic or unmapped error"),
         ]
